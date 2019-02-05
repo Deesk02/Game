@@ -2,20 +2,35 @@
 
 <html>
 <head>
-	<style>
-	.background {background-color: black;}
-	.box {background-color: blue; color: yellow; margin-top: 30px; margin-bottom: 30px; margin-right: 1280px; margin-left: 30px; }
-	.big {font-size: 50px;}
-	.small {font-size: 10px}
-	.yellow {color: yellow;}
-	.red {color: red;}
-	</style>
+<script src="test.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+	
 <!-- Just testing out the comment, move along. -->
 </head>
 <body class="background">
-<a href="Test.html">Click Me?</a>
+<a href="Test.html">Click Me?</a> </br>
+<a href="Folder/Test2.html"> Will this Work? </a>
 <div class="box">Hello</div>
 <p> <h1 class="big yellow"> Welcome to my website!</h1></p>
-<p class="red"> Hi <p>
+<p class="red"> Hi </p>
+<audio id="myAudio">
+  <source src="Music/02 Green Greens.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="playAudio()" type="button">Play</button>
+<button onclick="pauseAudio()" type="button">Pause</button> 
+
+<script>
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+  x.play(); 
+} 
+
+function pauseAudio() { 
+  x.pause(); 
+} 
+</script>
+
 </body>
 </html>
