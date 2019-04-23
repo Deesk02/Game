@@ -4,7 +4,7 @@
 <head>
 <script src="test.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="icon" type="image/png" href="favicon.png" />	
+<link rel="icon" type="image/png" href="favicon.png" />
 <!-- Just testing out the comment, move along. -->
 </head>
 <body class="background">
@@ -19,6 +19,7 @@
 
 <button onclick="playAudio()" type="button">Play</button>
 <button onclick="pauseAudio()" type="button">Pause</button> 
+<button onclick="Alert()" type="button">Alert</button>
 <script>
 var x = document.getElementById("myAudio"); 
 
@@ -29,6 +30,7 @@ function playAudio() {
 function pauseAudio() { 
   x.pause(); 
 } 
+
 </script>
 <audio id="OOF">
  <source src="Music/oof.mp3" type="audio/mpeg">
