@@ -1,20 +1,6 @@
 	.background {background-color: black;}
-	.box {background-color: blue; color: yellow; margin-top: 30px; margin-bottom: 30px; margin-right: 1280px; margin-left: 30px; }
+	.box {background-color: Yellow; color: Black; text-align: center;}
 	.big {font-size: 50px;}
 	.small {font-size: 10px}
 	.yellow {color: yellow;}
 	.red {color: red;}
-	.game {
-	position: absolute;
-	top: 30px;
-	left: 350px;
-	width: 600px;
-	height: 600px;
-	background-color: gray;
-	align-items: center;
-	justify-content: center;
-	flex-direction: row;
-	border-radius: 5px;
-	box-shadow: 5px 10px 50px;
-	padding: 20px;
-	}
