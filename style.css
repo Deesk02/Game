@@ -4,3 +4,17 @@
 	.small {font-size: 10px}
 	.yellow {color: yellow;}
 	.red {color: red;}
+	.game {
+	position: absolute;
+	top: 30px;
+	left: 350px;
+	width: 600px;
+	height: 600px;
+	background-color: gray;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	border-radius: 5px;
+	box-shadow: 5px 10px 50px;
+	padding: 20px;
+	}
