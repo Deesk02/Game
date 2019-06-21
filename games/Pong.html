@@ -3,25 +3,32 @@
 
 <canvas id="gameCanvas" width="800" height="600"></canvas>
 
+
 <script> 
 var canvas;
 var canvasContext;
 var ballX = 50;
-var ballSpeedX= 5;
+var ballSpeedX= 7;
 var ballY = 10;
-var ballSpeedY= 4;
+var ballSpeedY= 6;
+const BRICK_COLS = 10;
+const BRICK_ROWS = 14;
+var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 
 var player1Score = 0;
 var player2Score = 0;
 const WIN = 3;
 
 var winScreen = false;
+var loseScreen = false;
+
+var level = 1;
 
 var paddle1Y=250;
 var paddle2Y=250;
 const PADDLE_HEIGHT = 100;
 const THICC=10;
-const CPUSPD=8;
+const CPUSPD=6;
 
 
 function calcMousePos(evt){
@@ -49,15 +56,19 @@ window.onload = function(){
       var mousePos = calcMousePos(evt);
       paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
     });
-}
+};
 
 function reset(){
-  if(player1Score >= WIN ||
-     player2Score >= WIN){
+  if(player1Score >= WIN){
        player1Score=0;
        player2Score=0;
-       winScreen= true;
+       level++;
+       if(level>5){
+       winScreen= true;}
      }
+    if(player2Score >= WIN){
+    	loseScreen=true;
+    }
   ballSpeedX = -ballSpeedX;
   ballSpeedY = -ballSpeedY;
   ballX = canvas.width/2;
@@ -67,9 +78,9 @@ function reset(){
 function cpuMove(){
   var paddle2YCenter = paddle2Y+(PADDLE_HEIGHT/2);
   if(paddle2YCenter < ballY-35){
-    paddle2Y+=CPUSPD;
+    paddle2Y+=CPUSPD+level;
   } else if(paddle2YCenter > ballY+35){
-    paddle2Y-=CPUSPD;
+    paddle2Y-=CPUSPD+level;
   }
 }
 
@@ -119,21 +130,36 @@ if(winScreen){
 
 function draw(){
   //background
-  rect(0,0,canvas.width, canvas.height, 'black');
+  rect(0,0,canvas.width, canvas.height, '#228B22');
   
-  if(winScreen){
-    canvasContext.fillStyle='white';
-    canvasContext.fillText("GAME OVER! Someone won and someone lost, but frankly I don't care enough to program who won or lost so instead you get this message! Have a nice day! Refresh to reset.", 10, canvas.height/2);
+  rect(canvas.width/2-5, 0, 10, 600, 'grey');
+  
+  if(loseScreen){
+  	rect(0,0,canvas.width, canvas.height, 'black');
+    canvasContext.fillStyle='red';
+    canvasContext.font= "30px Georgia";
+    canvasContext.fillText("GAME OVER! Refresh to reset.", canvas.width/4, canvas.height/2);
+  return;}
+   if(winScreen){
+   	rect(0,0,canvas.width, canvas.height, 'yellow');
+    canvasContext.fillStyle='black';
+    canvasContext.font= "50px Georgia";
+    canvasContext.fillText("Congratulations! You Won!!!", canvas.width/8, canvas.height/2);
   return;
 }
-  //left paddle
-  rect(1, paddle1Y, THICC, PADDLE_HEIGHT, 'white');
-  //right paddle
-  rect(canvas.width-THICC, paddle2Y, THICC, PADDLE_HEIGHT, 'white');
   //ball
-  circle(ballX, ballY, 10, 'white')
+  circle(ballX, ballY, 10, '#CCCC00');
+  //left paddle
+  rect(1, paddle1Y, THICC, PADDLE_HEIGHT, 'blue');
+  //right paddle
+  rect(canvas.width-THICC, paddle2Y, THICC, PADDLE_HEIGHT, 'red');
+  
 
+
+canvasContext.fillStyle='white';
+canvasContext.font= "50px Comic Sans";
 canvasContext.fillText(player1Score, 100, 100);
+canvasContext.fillText("Level "+ level,(canvas.width/2)-75, 50);
 canvasContext.fillText(player2Score, canvas.width-100, 100);
 
     }
