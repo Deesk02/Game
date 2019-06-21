@@ -10,11 +10,18 @@
 .pauseButton:hover {
   background-color: grey;
 }
+.exbox{position:absolute; top: 8px; left:810px; background-color:silver; color: darkgreen; font-size:16px; width: 200px; height: 600px; }
 </style>
 </head>
 <body>
-
-<button class="pauseButton" onmousedown="alert('Click OK to resume.')">Pause</button>
+<div class="exbox">Hello and welcome to my pong game! </br></br>
+ To move your paddle (the blue one) just move your mouse up and down and it should follow. If you are on mobile then just click where you want your paddle to go (more support will be added later)
+ </br></br> First to 3 wins the level. You will go against a CPU (red) who will get harder each level. There are a total of 5 levels, but watch out, if you lose a level you lose entirly and will have to reset.
+ </br></br>To pause, click the pause button and all movement on the screen will stop until you click "OK" or move to another tab.
+ </br></br> Thank you, for playing. Also be sure to check every so often as I plan to add a lot of updates.
+ </br> <a href="mailto:schunemantrevor@gmail.com"target="_blank";> Questions? Comments? Suggestions? Email me here!</a>
+ </br></br> <a href="https://deesk02.github.io/Game/"> Go back to home page.</a></div>
+<button class="pauseButton" onmousedown="pause()">Pause</button>
 
 <script> 
 var canvas;
@@ -152,7 +159,7 @@ function draw(){
     canvasContext.fillText("GAME OVER! Refresh to reset.", canvas.width/4, canvas.height/2);
   return;}
    if(winScreen){
-   	rect(0,0,canvas.width, canvas.height, 'yellow');
+   	rect(0,0,canvas.width, canvas.height, 'gold');
     canvasContext.fillStyle='black';
     canvasContext.font= "50px Georgia";
     canvasContext.fillText("Congratulations! You Won!!!", canvas.width/8, canvas.height/2);
@@ -186,7 +193,9 @@ function rect(leftX,topY, width, height, drawColor){
     canvasContext.fillStyle = drawColor;
     canvasContext.fillRect(leftX,topY, width, height);
 }
-
+function pause(){
+	alert('Click OK to resume.');
+}
 </script>
 </body>
 </html>
