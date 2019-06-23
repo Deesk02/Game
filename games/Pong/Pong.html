@@ -13,8 +13,8 @@
 </head>
 <body>
 
-  <audio id="boop">
-    <source src="sound/boop.3gp">
+  <audio id="bloop">
+    <source src="sound/bloop.mp3">
   </audio>
 <div class="exbox">Hello and welcome to my pong game! </br></br>
  To move your paddle (the blue one) just move your mouse up and down and it should follow. If you are on mobile then just click where you want your paddle to go (more support will be added later)
@@ -27,9 +27,9 @@
 
 <script> 
 
-var boop= new Audio('sound/boop.3gp');
-function doboop(){
-	boop.play();
+var bloop= new Audio('sound/bloop.mp3');
+function dobloop(){
+	bloop.play();
 }
 
 var canvas;
@@ -123,6 +123,7 @@ if(winScreen){
       if(ballY > paddle1Y &&
          ballY < paddle1Y+PADDLE_HEIGHT){
            ballSpeedX = -ballSpeedX;
+           dobloop();
           
           var deltaY = ballY
           -(paddle1Y+PADDLE_HEIGHT/2);
@@ -137,9 +138,9 @@ if(winScreen){
       if(ballY > paddle2Y &&
          ballY < paddle2Y+PADDLE_HEIGHT){
            ballSpeedX = -ballSpeedX;
-           doboop();
-           boop();
-           boop.play();
+           dobloop();
+           bloop();
+           bloop.play();
            var deltaY = ballY
           -(paddle2Y+PADDLE_HEIGHT/2);
           ballSpeedY=deltaY * 0.35;}
@@ -151,11 +152,11 @@ if(winScreen){
   ballY = ballY + ballSpeedY;
    if(ballY < 0){
         ballSpeedY = -ballSpeedY;
-        doboop();
+        dobloop();
     }
   if(ballY > canvas.height){
         ballSpeedY = -ballSpeedY;
-        doboop();
+        dobloop();
     }
 }
 
@@ -166,6 +167,8 @@ function draw(){
   rect(canvas.width/2-5, 0, 10, 600, 'grey');
   
   if(loseScreen){
+  	ballSpeedX= 0;
+  	ballSpeedY=0;
   	rect(0,0,canvas.width, canvas.height, 'black');
     canvasContext.fillStyle='red';
     canvasContext.font= "30px Georgia";
