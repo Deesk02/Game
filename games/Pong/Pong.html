@@ -2,18 +2,20 @@
 <html>
 <head>
 <title>Pong</title>
-<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="icon" type="image/png" href="Pong/images/favicon.png" />
 <canvas id="gameCanvas" width="800" height="600"></canvas>
 <style>
 .pauseButton{position: absolute;top: 8px;left: 733px;padding:15px;background-color:#D3D3D3; border: none;color: white;text-align: center;font-size: 16px; cursor: pointer;}
+.pauseButton:hover {background-color: grey;}
 .up{position: absolute;top: 8px;left: 850px;padding:15px;background-color:blue; border: none;color: white;text-align: center;font-size: 16px; cursor: pointer;}
-.pauseButton:hover {
-  background-color: grey;
-}
-.exbox{position:absolute; top: 8px; left:810px; background-color:silver; color: darkgreen; font-size:16px; width: 200px; height: 600px; }
+.exbox{position:absolute; top: 8px; left:810px; background-color:silver; color: darkgreen; font-size:14px; width: 200px; height: 600px; }
 </style>
 </head>
 <body>
+
+  <audio id="boop">
+    <source src="sound/boop.3gp">
+  </audio>
 <div class="exbox">Hello and welcome to my pong game! </br></br>
  To move your paddle (the blue one) just move your mouse up and down and it should follow. If you are on mobile then just click where you want your paddle to go (more support will be added later)
  </br></br> First to 3 wins the level. You will go against a CPU (red) who will get harder each level. There are a total of 5 levels, but watch out, if you lose a level you lose entirly and will have to reset.
@@ -24,6 +26,12 @@
 <button class="pauseButton" onmousedown="pause()">Pause</button>
 
 <script> 
+
+var boop= new Audio('sound/boop.3gp');
+function doboop(){
+	boop.play();
+}
+
 var canvas;
 var canvasContext;
 var ballX = 50;
@@ -129,6 +137,9 @@ if(winScreen){
       if(ballY > paddle2Y &&
          ballY < paddle2Y+PADDLE_HEIGHT){
            ballSpeedX = -ballSpeedX;
+           doboop();
+           boop();
+           boop.play();
            var deltaY = ballY
           -(paddle2Y+PADDLE_HEIGHT/2);
           ballSpeedY=deltaY * 0.35;}
@@ -140,9 +151,11 @@ if(winScreen){
   ballY = ballY + ballSpeedY;
    if(ballY < 0){
         ballSpeedY = -ballSpeedY;
+        doboop();
     }
   if(ballY > canvas.height){
         ballSpeedY = -ballSpeedY;
+        doboop();
     }
 }
 
